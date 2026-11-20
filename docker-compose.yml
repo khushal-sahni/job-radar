@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: job-radar-postgres
+    restart: unless-stopped
+    ports:
+      - "${POSTGRES_PORT:-5433}:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-jobradar}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-jobradar}
+      POSTGRES_DB: ${POSTGRES_DB:-job_radar}
+    volumes:
+      - job_radar_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-jobradar} -d ${POSTGRES_DB:-job_radar}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  job_radar_pgdata:

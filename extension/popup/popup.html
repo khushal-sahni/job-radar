@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Job Radar</title>
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        padding: 16px;
+        width: 320px;
+        font: 14px system-ui, sans-serif;
+        background: #09090b;
+        color: #fafafa;
+      }
+      h1 { font-size: 16px; margin: 0 0 4px; }
+      p { margin: 0 0 12px; color: #a1a1aa; font-size: 12px; line-height: 1.4; }
+      label { display: block; font-size: 12px; color: #d4d4d8; margin-bottom: 12px; }
+      input[type="url"] {
+        width: 100%; margin-top: 4px; padding: 8px 10px;
+        border-radius: 8px; border: 1px solid #3f3f46;
+        background: #18181b; color: #fafafa;
+      }
+      button {
+        width: 100%; padding: 10px; border: none; border-radius: 8px;
+        background: #10b981; color: #042f2e; font-weight: 600; cursor: pointer;
+      }
+      button:disabled { opacity: 0.5; cursor: not-allowed; }
+      button.secondary {
+        margin-top: 8px; background: transparent;
+        border: 1px solid #52525b; color: #e4e4e7;
+      }
+      #status { margin-top: 10px; font-size: 12px; color: #34d399; min-height: 16px; }
+      #profile-preview {
+        margin: 12px 0; padding: 10px; border-radius: 8px;
+        background: #18181b; border: 1px solid #27272a; font-size: 12px;
+        color: #a1a1aa;
+      }
+      .toggle-row {
+        display: flex; align-items: flex-start; gap: 10px;
+        margin: 0 0 14px; padding: 10px;
+        border: 1px solid #27272a; border-radius: 8px;
+        background: #18181b;
+      }
+      .toggle-row input { margin-top: 2px; }
+      .toggle-row span { font-size: 12px; color: #d4d4d8; line-height: 1.4; }
+      .toggle-row strong { color: #fafafa; display: block; margin-bottom: 2px; }
+      a { color: #34d399; }
+      .hint { margin: 6px 0 14px; }
+    </style>
+  </head>
+  <body>
+    <h1>Job Radar</h1>
+    <p>Applies to the job on this tab in Job Radar's own Chrome, the same way as Apply now. LinkedIn is never applied to.</p>
+
+    <button id="applyBtn">Apply to this page</button>
+    <button id="fillBtn" class="secondary">Fill this page (no submit)</button>
+    <p id="shortcutHint" class="hint"></p>
+
+    <label class="toggle-row">
+      <input id="linkedinToggle" type="checkbox" />
+      <span>
+        <strong>Scan LinkedIn jobs</strong>
+        Default off. Scores cards already on screen (~1s apart, max 5). No auto-click, no LinkedIn API calls.
+      </span>
+    </label>
+
+    <label>
+      Job Radar API URL
+      <input id="apiBase" type="url" placeholder="http://localhost:3001" />
+    </label>
+
+    <div id="profile-preview">Profile not synced yet.</div>
+
+    <button id="syncBtn" class="secondary">Sync from Job Radar</button>
+    <button id="settingsBtn" class="secondary">Open Job Radar settings</button>
+
+    <div id="status"></div>
+    <script src="popup.js"></script>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+# Job Radar Watcher — DSH patch overlay
+# Enables schedule + time-context for the job watcher agent.
+# The web profile already bundles web-search-deepseek + web_search tool.
+#
+# Apply with: dsh web --patch job-radar/dsh/job-watcher.cordis.yml
+#
+# The schedule plugin gives us `every_seconds` reminders (min 300s, we use 43200 = 12h).
+# Time-context tells the agent the current browser timezone for accurate scheduling.
+
+- insert:
+    - id: time-context
+      name: '@deepseek-ai/dsh-time-context'
+
+    - id: schedule
+      name: '@deepseek-ai/dsh-schedule'

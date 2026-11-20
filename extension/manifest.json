@@ -1,0 +1,62 @@
+{
+  "manifest_version": 3,
+  "name": "Job Radar",
+  "version": "0.3.1",
+  "description": "Sends the job page you are on to Job Radar's apply runner, plus an opt-in LinkedIn job matcher. LinkedIn is never applied to.",
+  "permissions": ["storage", "activeTab"],
+  "host_permissions": [
+    "https://www.linkedin.com/*",
+    "https://linkedin.com/*",
+    "https://*.linkedin.com/*",
+    "http://localhost:3000/*",
+    "http://localhost:3001/*",
+    "http://localhost:3002/*",
+    "http://127.0.0.1:3000/*",
+    "http://127.0.0.1:3001/*",
+    "http://127.0.0.1:3002/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "commands": {
+    "apply-to-page": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+J",
+        "mac": "MacCtrl+Shift+J"
+      },
+      "description": "Apply to this job page with Job Radar"
+    },
+    "fill-page": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+K",
+        "mac": "MacCtrl+Shift+K"
+      },
+      "description": "Fill this job page with Job Radar without submitting"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.linkedin.com/jobs*",
+        "https://www.linkedin.com/jobs/*",
+        "https://*.linkedin.com/jobs*",
+        "https://*.linkedin.com/jobs/*",
+        "https://linkedin.com/jobs*",
+        "https://linkedin.com/jobs/*"
+      ],
+      "js": [
+        "linkedin/parser.js",
+        "linkedin/scorer.js",
+        "linkedin/badge.js",
+        "linkedin/observer.js",
+        "linkedin/index.js"
+      ],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "action": {
+    "default_title": "Job Radar",
+    "default_popup": "popup/popup.html"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "_comment": "Copy to data/applicant.json to add standing background facts for written answers. New installs work without this file.",
+  "backgroundFacts": [],
+  "education": {
+    "school": "",
+    "schoolSearches": ["Other", "not listed"],
+    "degree": "",
+    "degreeSearches": [],
+    "discipline": "",
+    "disciplineSearches": ["Other"],
+    "startYear": "",
+    "startMonth": "",
+    "endYear": "",
+    "endMonth": ""
+  },
+  "latestJob": {
+    "title": "",
+    "company": "",
+    "start": "",
+    "end": null,
+    "location": "",
+    "description": ""
+  },
+  "earlierJobs": [],
+  "voiceLines": []
+}
